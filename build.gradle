@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'appengine'
+
+group = 'org.wisepersist'
+version = '1.0-SNAPSHOT'
+archivesBaseName = 'appengine-guestbook-java-gradle'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.34'
+    }
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+project.extensions.idea.module.iml {
+    withXml {
+        it.asNode().component.
+                find { it.@name == 'NewModuleRootManager' }.@LANGUAGE_LEVEL = target.level
+    }
+}
+
+dependencies {
+    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.34'
+
+    compile 'com.google.inject:guice:4.0'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.37'
+    compile 'javax.servlet:servlet-api:2.5'
+    compile 'jstl:jstl:1.2'
+
+    testCompile 'com.google.appengine:appengine-testing:1.9.37'
+    testCompile 'com.google.appengine:appengine-api-stubs:1.9.37'
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+}
+
+appengine {
+    downloadSdk = true
+}
