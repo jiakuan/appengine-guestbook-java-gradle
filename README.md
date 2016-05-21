@@ -57,3 +57,11 @@ And then specify output directory to:
 	
 Click OK buttons to confirm the settings. Now please try to run the project in Intellij IDEA.
 
+
+## Sponsor
+
+If you would like to contribute this project, please feel free to fork and create pull requests, or contact us at: support (at) wisepersist dot com
+
+This project is sponsored by: [TaskTips](https://task.tips).
+
+
